@@ -92,8 +92,6 @@ lucky = random.sample(numbers, 6)
 
 ![image-20220715104615699](markdown.assets/image-20220715104615699.png)
 
-
-
 - 깃로고 이미지 가져오기
 
   

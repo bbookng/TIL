@@ -119,19 +119,33 @@ b1da166 1st commit
 
 1. **push** : local > git  (내 PC에서 내보낼 때)
 
-```python
-git remote add origin 'git urlㅁㅇ` # git과 local 사이에 다리를 놔준다.
+```bash
+git remote add origin 'git url` # git과 local 사이에 다리를 놔준다.
 git push -u origin master # file 을 보낸다
 # origin 은 u의 닉네임 
 git remote remove origin
-git remote -v # remote 됐는지 확인
+git remote -v # remote 됐는지 확인 
 ```
 
 2. **pull** : git > local (Github에서 가져올 때)
 
-3. **clone** : local PC 에 아무것도 없을 때 pull 하는 것. ( Github 에서 처음 가져올 때)
+```bash
+git pull origin master
+origin <local>
+master <branch>
+```
 
-  
+
+
+2. **clone** : local PC 에 아무것도 없을 때 pull 하는 것. ( Github 에서 처음 가져올 때)
+
+  ```bash
+  git clone 주소
+  ```
+
+- `git add .` : 현재 디렉토리 파일 다 stage로
+
+
 
 # CLI (Command Line Interface)
 
