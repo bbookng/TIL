@@ -41,7 +41,12 @@ return var.sqrt()`#function body
 ```
 
 - 함수의 선언은 def  키워드를 활용함
-- 들여쓰기를 통해 
+- 들여쓰기를 통해 Funtion body(실행될 코드 블록)를 작성함
+  - Docstring은 함수 body 앞에 선택적으로 작성 가능
+    - 작성 시에는 반드시 첫 번째 문장에 문자열 """
+
+- 함수는 parameter를 넘겨줄 수 있음
+- 함수는 동작 후에 return을 통해 결괏값을 전달함
 
 ---
 
@@ -62,19 +67,21 @@ return var.sqrt()`#function body
 
 - **Positional Arguments**
   - **기본적으로** 함수 호출 시 Argument는 위치에 따라 함수 내에 전달됨
-
 - **Keyword Arguments**
   - 직접 변수의 이름으로 특정 Argument를 전달할 수 있음
   - **Keyword Argument 다음에 Positional Argument를 활용할 수 없음**
-
 - **Default Arguments Values**
   - 기본값을 지정하여 함수 호출 시 argument 값을 설정하지 않도록 함
     - 정의된 것 보다 더 적은 개수의 argument 들로 호출될 수 있음
-
 - **Asterisk(*****)와 가변 인자(*args)**
   - *는 스퀸스 연패킹 연산자라고도 불리며, 말 그대로 시퀀스를 풀어 헤치는 연산자
     - 주로 튜플이나 리스트를 언패킹하는데 사용
     - *를 활용하여 가변 인자를 만들 수 있음 
+- **가변인자란 ?**
+  - 여러 개의 Positional Argument를 하나의 필수 parameter로 받아서 사용
+
+- 가변인자는 언제 사용하는가 ?
+  - 몇 개의 Positional Argument를 받을지 모르는 함수를 정의할 때 유용
 
 - **가변 키워드 인자`(**kwargs)` 예시**
   - 가변인자와 가변 키워드 인자를 함께 사용할 수 있음
