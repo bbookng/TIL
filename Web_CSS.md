@@ -197,11 +197,11 @@ h1 {
 
 ### 📢 대표적으로 활용되는 display
 
-- display : block
+- `display : block`
   - 줄 바꿈이 일어나는 요소
   - 화면 크기 전체의 가로 폭을 차지한다.
   - 블록 레벨 요소 안에 인라인 레벨 요소가 들어갈 수 있음.
-- display: inline
+- `display: inline`
   - 줄 바꿈이 일어나지 않는 행의 일부 요소
   - content 너비만큼 가로 폭을 차지한다.
   - width, height, margin-top, margin-bottom 을 지정할 수 없다.
@@ -267,4 +267,34 @@ h1 {
 
      - 속성을 적용한 박스는 평소에 문서 안에서 position: static 상태와 같이 일반적인 흐름에 따르지만 스크롤 위치가 임계점에 이르면 position: fixed와 같이 박스를 화면에 고정할 수 있는 속성
 
-     
+
+
+
+## ✨ CSS 원칙
+
+### 📢 CSS 원칙 1, 2 : Normal flow
+
+- 모든 요소는 네모 (박스모델), 좌측상단에 배치
+- display에 따라 크기와 배치가 달라짐
+
+### 📢 CSS 원칙 3
+
+- **position으로 위치의 기준을 변경**
+  - relative : 본인의 원래 위치
+  - absolute : 특정 부모의 위치
+  - fixed : 화면의 위치
+  - sticky : 기본적으로 static이나 스크롤 이동에 따라 fixed로 변경
+
+
+
+## ✨ 개발자 도구
+
+### 📢 크롬 개발자 도구
+
+- 웹 브라우저 크롬에서 제공하는 개발과 관련된 다양한 기능을 제공
+- 주요 기능
+  - Elements - DOM 탐색 및 CSS 확인 및 변경
+    - Styles - 요소에 적용된 CSS 확인
+    - Computed - 스타일이 계산된 최종 결과
+    - Event Listeners - 해당 요소에 적용된 이벤트 (JS)
+  - Sources, Network, Performance, Application, Security, Audits 등
