@@ -987,3 +987,145 @@ def change_password(request):
 
 ## ✨ Limiting access to logged-in users
 
+#### 📌 개요
+
+- 로그인 사용자에 대한 접근 제한하기
+- 로그인 사용자에 대해 접근을 제한하는 2가지 방법
+
+1. The raw way
+   - `is_authenticated` attribute
+2. The `login_required` decorator
+
+
+
+#### 📌`is_authenticated`
+
+- User model의 속성(attributes) 중 하나
+- 사용자가 인증 되었는지 여부를 알 수 있는 방법
+- 모든 User 인스턴스에 대해 항상 True인 읽기 전용 속성
+  - AnonymousUser에 대해서는 항상 False
+- 일반적으로 `request.user`에서 이 속성을 사용 (request.user.is_authenticated)
+- 권한(permission)과는 관련이 없으며, 사용자가 활성화 상태(active)이거나 유효한 세션(valid session)을 가지고 있는지도 확인하지 않음
+
+
+
+#### 📌 `is_authenticated` 적용하기
+
+- 로그인과 비로그인 상태에서 출력되는 링크를 다르게 설정하기
+
+  ```django
+  <!-- base.html -->
+  
+  {% if request.user.is_authenticated %}
+    <h3>Hello, {{ user }}</h3>
+    <form action="{% url 'accounts:logout' %}" method="POST">
+        {% crsf_token %}
+        <input type="submit" value="Logout">
+    </form>
+    <a href="{% url 'accounts:update' %}">회원정보수정</a>
+    <form action="{% url 'accounts:delete' %}" method="POST">
+        {% crsf_token %}
+        <input type="submit" value="회원탈퇴">
+  </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:signup' %}">Signup</a>
+  {% endif %}
+  ```
+
+- 인증된 사용자만 게시글 작성 링크를 볼 수 있도록 처리하기
+
+- 하지만 아직 비 로그인 상태로도 URL을 직접 입력하면 게시글 작성 페이지로 갈 수 있음
+
+  ```django
+  <!-- articles/index.html -->
+  
+  {% extends 'base.html' %}
+  
+  {% block content %}
+    <h1>Articles</h1>
+    {% if request.user.is_authenticated %}
+  	<a href="{% url 'articles:create' %}">CREAE</a>
+    {% else %}
+  	<a href="{% url 'accounts:login' %}">새 글을 작성하려면 로그인하세요</a>
+    {% endif %}
+    ...
+  {% endblock content %}
+  ```
+
+- 인증된 사용자라면 로그인 로직을 수행할 수 없도록 처리
+
+  ```python
+  # accounts/views.py
+  
+  def login(request):
+      if request.user.is_authenticated:
+          return redirect('articles:index')
+      ...
+  ```
+
+
+
+#### 📌 `login-required`
+
+- `login-required` decorator
+-  사용자가 로그인 되어 있으면 정상적으로 view 함수를 실행
+- 로그인 하지 않은 사용자의 경우 settings.py의 LOGIN_URL 문자열 주소로 redirect
+  - [참고] LOGIN_URL의 기본 값은 /accounts/login/
+  - 두번째 app 이름을 accounts로 했던 이유 중 하나
+
+- 로그인 상태에서만 글을 작성/수정/삭제 할 수 있도록 변경
+
+  ```python
+  from django.contrib.auth.decorators import login_required
+  
+  @login_required
+  @require_http_methods(['GET', 'POST'])
+  def create(request):
+      pass
+  
+  @login_required
+  @require_http_methods(['GET', 'POST'])
+  def delete(request, pk):
+      pass
+  
+  @login_required
+  @require_http_methods(['GET', 'POST'])
+  def update(request, pk):
+      pass
+  ```
+
+  
+
+#### 📌 `login_required` 적용 확인하기
+
+- /articles/create/ 로 강제 접속 시도 해보기
+- 로그인 페이지로 리다이렉트 후 `/accounts/login/?next=/articles/create/ ` 확인하기
+- 인증 성공 시 사용자가 redirect 되어야 하는 경로는 "next"라는 쿼리 문자열 매개 변수에 저장됨
+  - 예시 ) /accounts/login/?next=/articles/create/
+
+
+
+#### 📌 "next" query string parameter
+
+- 로그인이 정상적으로 진행되면 이전에 요청했던 주소로 redirect 하기 위해 Django가 제공해주는 쿼리 스트링 파라미터
+- 해당 값을 처리할지 말지는 자유이며 별도로 처리 해주지 않으면 view에 설정한 redirect 경로로 이동하게 됨
+
+
+
+#### 📌 "next" query string parameter 대응
+
+```python
+# accounts/views.py
+
+def login(request):
+    if request.user.is_authenticated:
+        return redirect('articles:index')
+    
+    if request.method == 'POST':
+        form = AuthentizationForm(request, request.POST)
+        if form.is_valid():
+            auth_login(request.form.get_user())
+            return redirect(request.GET.get('next') or 'articles:index')
+```
+
