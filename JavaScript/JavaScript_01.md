@@ -1266,17 +1266,61 @@ function add (num1, num2) {
 - 반면 함수 표현식으로 선언한 함수는 함수 정의 전에 호출 시 에러 발생
 - 함수 표현식으로 정의된 함수는 변수로 평가되어 변수의 scope 규칙을 따름
 
+```javascript
+sub(7, 2) // Uncaught ReferenceError: Cannot access 'sub' berfor initialization
+
+const sub = function (num1, num2) {
+    return num1 - num2
+}
+```
 
 
 
+#### 💡 선언식과 표현식 정리
+
+![image-20221022172946195](assets/image-20221022172946195.png)
 
 
 
+### 📌 Arrow Function
+
+#### 💡 화살표 함수 (Arrow Function)
+
+- "함수를 비교적 간결하게 정의할 수 있는 문법"
+- function 키워드를 중괄호를 이용한 구문을 짧게 사용하기 위해 탄생
+  1. `function` 키워드 생략 가능
+  2. 함수의 매개변수가 하나 뿐이라면 매개변수의 `()` 도 생략 가능
+  3. 함수의 내용이 한 줄이라면 `{}` 와 `return`도 생략 가능
+- 화살표 함수는 항상 익명 함수
+  - `===` 함수 표현식에서만 사용가능
 
 
 
+#### 💡 화살표 함수 (Arrow Function) 예시
+
+```javascript
+const arrow1 = function (name) {
+    return `hello, ${name}`
+}
+
+// 1. function 키워드 삭제
+const arrow2 = (name) => { return `hello, ${name}`}
+
+// 2. 인자가 1개일 경우에만 () 생략 가능
+const arrow3 = name => { return `hello, ${name}`}
+
+// 3. 함수 바디가 return 을 포함한 표현식 1개일 경우에 {} & return 삭제 가능
+const arrow4 = name => `hello ${name}`
+```
+
+- **명확성과 일관성을 위해 항상 인자 주위에는 괄호(`()`) 를 포함하는 것을 권장**
 
 
+
+#### 💡 화살표 함수 (Arrow Function) 응용
+
+```javascript
+```
 
 
 
