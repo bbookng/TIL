@@ -37,7 +37,7 @@
 - DOM 은 문서를 논리 트리로 표현
 - DOM 메서드를 사용하면 프로그래밍적으로 트리에 접근할 수 있고 이를 통해 문서의 구조, 스타일, 컨텐츠를 변경할 수 있음
 
-![image-20221024121540334](C:\Users\SSAFY\AppData\Roaming\Typora\typora-user-images\image-20221024121540334.png)
+![image-20221024235956108](assets/image-20221024235956108.png)
 
 - 웹 페이지는 일종의 문서 (document)
 - 이 문서는 웹 브라우저를 통해 그 내용이 해석되어 웹 브라우저 화면에 나타나거나 HTML 코드 자체로 나타나기도 함
@@ -68,9 +68,19 @@
 - 가장 최상위 객체 (작성 시 생략 가능)
 - 탭 기능이 있는 브라우저에서는 각각의 탭을 각각의 window 객체로 나타냄
 
-![image-20221024140730844](C:\Users\SSAFY\AppData\Roaming\Typora\typora-user-images\image-20221024140730844.png)
+![image-20221025000058409](assets/image-20221025000058409.png)
 
+- 새 탭 열기
 
+  ![image-20221025000152043](assets/image-20221025000152043.png)
+
+- 경고 대화 상자 표시
+
+  ![image-20221025000204307](assets/image-20221025000204307.png)
+
+- 인쇄 대화 상자 표시
+
+![image-20221025000212657](assets/image-20221025000212657.png)
 
 
 
@@ -78,6 +88,15 @@
 
 - 브라우저가 불러온 웹 페이지
 - 페이지 컨텐츠의 진입점 역할을 하며, `<body>` 등과 같은 수많은 다른 요소들을 포함하고 있음
+
+- **document 는 window 의 속성이다.**
+
+
+
+#### 💡 [참고] 파싱 (Parsing)
+
+- 구문 분석, 해석
+- 브라우저가 문자열을 해석하여 DOM Tree 로 만드는 과정
 
 
 
@@ -100,6 +119,16 @@
   - 제공한 선택자와 일치하는 여러 element를 선택
   - 매칭 할 하나 이상의 셀렉터를 포함하는 유효하 CSS selector 를 인자 (문자열)로 받음
   - 제공한 CSS selector를 만족하는 NodeList 를 반환
+
+```javascript
+console.log(document.querySelector('#title'))	// id
+	
+console.log(document.querySelectorAll('.text'))	// class
+
+console.log(document.querySelector('.text'))
+
+console.log(document.querySelectorAll('body > ul > li'))
+```
 
 
 
@@ -149,6 +178,27 @@
 
 
 
+```javascript
+// h1 요소 (element) 를 만들고
+const title = document.createElement('h1')
+
+// 텍스트를 추가하고
+title.innerText = 'DOM 조작'
+
+// 선택자로 div 태그를 가져와서
+const div = document.querySelector('div')
+
+// div 태그의 자식 요소로 추가
+div.appendChild(title)
+
+// div의 h1 요소 삭제
+div.removeChild(title)
+```
+
+
+
+
+
 #### 💡 조작 관련 메서드 (속성 조회 및 설정)
 
 - `Element.getAttribute(attributeName)`
@@ -157,6 +207,33 @@
 - `Element.setAttribute(name, value)`
   - 지정된 요소의 값을 설정
   - 속성이 이미 존재하면 값을 갱신, 존재하지 않으면 지정된 이름과 값으로 새 속성을 추가
+
+
+
+```javascript
+// a tag 생성 및 컨텐츠 추가
+const aTag = document.createElement('a')
+aTag.innerText = '구글'
+
+// div 태그의 자식 태그로 a 태그 추가
+const div = document.querySelector('div')
+div.appendChild(aTag)
+
+// a 태그의 href 속성 추가
+aTag.setAttribute('href', 'https://google.com')
+console.log(aTag.getAttibute('href'))
+
+// h1 tag 선택 및 클래스 목록 조회
+const h1 = document.querySelector('h1')
+console.log(h1.classList)
+
+// 클래스가 존재한다면 제거하고 false 를 반환,
+// 존재하지 않으면 클래스를 추가하고 true 를 반환
+h1.classList.toggle('blue')
+console.log(h1.classList)
+```
+
+
 
 
 
@@ -217,7 +294,9 @@
 
 
 
-#### 💡 Event 실습
+### 📌 Event 실습
+
+#### 💡 01_button.html
 
 
 
