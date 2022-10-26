@@ -246,3 +246,88 @@ axios.get('요청할 URL') // Promise 객체 return
 
 ## ✨ AJAX
 
+#### 💡 AJAX 란?
+
+- 비동기 통신을 이용하면 화면 전체를 새로고침 하지 않아도 서버로 요청을 보내고, 데이터를 받아 화면의 일부분만 업데이트 가능
+- 이러한 '비동기 통신 웹 개발 기술' 을 Asynchronous Javascript And XML (AJAX 라 함
+- **AJAX의 특징**
+  1. 페이지 새로고침 없이 서버에 요청
+  2. 서버로부터 응답(데이터)을 받아 작업을 수행
+- 이러한 비동기 웹 통신을 위한 라이브러리 중 하나가 Axios
+
+
+
+### 📌 비동기 적용하기
+
+#### 💡사전 준비
+
+- 마지막 Django 프로젝트 준비하기 (M:N까지 진행한 프로젝트)
+- 가상 환경 생성 및 활성화, 패키지 설치
+
+
+
+#### 💡 팔로우 (follow)
+
+- 각각의 템플릿에서 script 코드를 작성하기 위한 block tag 영역 작성
+
+```django
+<!-- base.html -->
+
+<body>
+    ...
+    {% block script %}
+    {% endblock script %}
+</body>
+</html>
+```
+
+
+
+- axios CDN 작성
+
+```django
+<!-- accounts/profile.html -->
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+  </script>
+{% endblock script %}
+```
+
+
+
+- form 요소 선택을 위해 id 속성 지정 및 선택
+- 불필요해진 action 과 method 속성은 삭제 (요청은 axios 로 대체되기 때문)
+
+```django
+<!-- accounts/profile.html -->
+
+<form id="follow-form">
+    ...
+</form>
+```
+
+```django
+<!-- accounts/profile.html -->
+
+<script>
+  const form = document.querySelector('#follow-form')
+</script>
+```
+
+
+
+- form 요소에 이벤트 핸들러 작성 및 submit 이벤트 취소
+
+```django
+<!-- accounts/profile.html -->
+
+<script>
+  const form = document.querySelector('#follow-form')
+  form.addEventListener('submit', function (event) {
+      event.preventDefault()
+  })
+</script>
+```
+
