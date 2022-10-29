@@ -103,7 +103,7 @@ console.log('3. 다른 작업 실행')
   1. 모든 작업은 `Call Stack(LIFO)` 으로 들어간 후 처리된다.
   2. 오래 걸리는 작업이 `Call Stack` 으로 들어오면 `Web API` 로 보내서 처리하도록 한다.
   3. `Web API` 에서 처리가 끝난 작업들은 `Task Queue(FIFO)` 에 순서대로 들어간다.
-  4. `Event Loop` 가 `Call Stack` 이 비어 잇는 것을 체크하고, 
+  4. `Event Loop` 가 `Call Stack` 이 비어 있는 것을 체크하고, 
      `Task Queue` 에서 가장 오래된 작업을 `Call Stack`으로 보낸다.
 
 ##### 1. Call Stack
@@ -162,6 +162,51 @@ Call Stack 에 들어와 순차적으로 실행됨으로써 비동기 작업이 
 - get, post 등 여러 method 사용 가능
 - `then` 을 이용해서 성공하면 수행할 로직을 작성
 - `catch` 를 이용해서 실패하면 수행할 로직을 작성
+
+
+
+#### 💡 고양이 사진 가져오기
+
+- The Cat API (https://api.thecatapi.com/v1/images/search)
+  - 이미지를 요청해서 가져오는 작업을 비동기로 처리
+- **response 구조**
+
+```django
+// https://api.thecatapi.com/v1/images/search
+
+[
+  {
+	"id": "d6n",
+	"url": "https://cdn2.thecatapi.com/iamges/d6n.jpg"
+	"width": 333,
+	"height": 500,
+  }
+]
+```
+
+
+
+- Python 으로 요청해보기 (동기)
+
+```python
+import requests
+
+print('고양이는 야옹')
+
+cat_image_serach_url = 'https://api.thecatapi.com/v1/images/search'
+response = requests.get(cat_image_search_url)
+
+if response.status_code == 200:
+    print(response.json())
+else:
+    print('실패했다옹')
+    
+print('야옹야옹')
+```
+
+![image-20221027090547701](JavaScript_03.assets/image-20221027090547701.png)
+
+
 
 
 
