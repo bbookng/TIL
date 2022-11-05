@@ -16,10 +16,19 @@
 
 - 웹 브라우저에 내장된 API 로, 현재 컴퓨터 환경에 관한 데이터를 제공하거나 여러가지 유용하고 복잡한 일을 수행
 
+- JavaScript 로 Browser API 들을 사용해서 여러가지 기능을 사용할 수 있음
+
 - 종류
   - **DOM**
   - Geolocation API
   - WebGL 등
+
+
+
+#### 💡 브라우저가 웹 페이지를 불러오는 과정
+
+- 웹 페이지를 브라우저로 불러오면, 브라우저는 코드 (HTML, CSS, JavaScript)를 실행 환경 (브라우저 탭)에서 실행
+- JavaScript 는 **DOM API**를 통해 HTML과 CSS를 동적으로 수정, 사용자 인터페이스를 업데이트 하는 일에 가장 많이 쓰임
 
 
 
@@ -297,6 +306,12 @@ console.log(h1.classList)
 ### 📌 Event 실습
 
 #### 💡 01_button.html
+
+- 버튼을 클릭하면 특정 변수 값 변경하기
+
+
+
+
 
 
 
