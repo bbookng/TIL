@@ -54,7 +54,7 @@ $ cd vuex-app			// 디렉토리 이동
 $ vue add vuex			// Vue CLI 를 통해 vuex plugin 적용
 ```
 
-- `src`, `store`, `index.js` 가 생성됨
+- `src`/ `store`/ `index.js` 가 생성됨
 - **vuex** 의 핵심 컨셉 4가지
   1. `state`
   2. `getters`
@@ -502,3 +502,19 @@ export default {
 
 ## ✨ Todo with Vuex
 
+
+
+## ✨ Local Storage
+
+- 브라우저의 **Local Storage**에 todo 데이터를 저장하여 브라우저를 종료하고 다시 실행해도 데이터가 보존될 수 있도록 하기
+
+
+
+#### 💡 `Window.localStorage`
+
+- 브라우저에서 제공하는 저장공간 중 하나인 Local Storage 에 관련된 속성
+- 만료되지 않고 브라우저를 종료하고 다시 실행해도 데이터가 보존됨
+- 데이터가 문자열 형태로 저장됨
+- 관련 메서드
+  - `setItem(key, value)` - key, value 형태로 저장
+  - `getItem(key)` -key 에 해당하는 데이터 조회
