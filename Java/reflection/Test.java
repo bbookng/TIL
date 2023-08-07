@@ -1,5 +1,6 @@
 package reflection;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -90,5 +91,10 @@ class Test {
         Class clazz3 = Class.forName("reflection.StaticExample");
         Method method = clazz3.getDeclaredMethod("getSquare", int.class);
         method.invoke(null, 10);
+
+        Field fld = clazz3.getDeclaredField("EXAMPLE");
+        fld.set(null, "Hello, World");
+        System.out.println("StaticExample.EXAMPLE: " + fld.get(null));
+
     }
 }
