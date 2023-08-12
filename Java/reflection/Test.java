@@ -1,6 +1,9 @@
 package reflection;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 class Test {
     public static void main(String args[]) throws Exception {
@@ -48,5 +51,50 @@ class Test {
         /**
          * 3. Method 찾기
          */
+        Method method1 = clazz2.getDeclaredMethod("method4", int.class);
+        System.out.println("Find out method4 method in Child: " + method1);
+
+        // 인자가 없는 경우 null 을 넣어준다.
+//        Method method2 = clazz2.getDeclaredMethod("method4", null);
+//        System.out.println("Find out method4 method in Child: " + method2);
+
+        // 인자가 두 개 이상인 경우
+//        Class partypes[] = new Class[1];
+//        Method method3 = clazz2.getDeclaredMethod("method4", partypes);
+
+
+        // public 메서드만
+        Method methods2[] = clazz2.getMethods();
+        for (Method method : methods2) {
+            System.out.println("Get public methods in both Parent and Child: " + method);
+        }
+
+        /**
+         * 4. Field 변경
+         */
+
+        Field field = clazz2.getDeclaredField("cstr1");
+        Field field2 = clazz2.getDeclaredField("cstr2");
+        System.out.println("Find out cstr1 field in Child: " + field);
+        System.out.println("Find out cstr2 field in Child: " + field2);
+
+        // public Filed 만
+        Field fields[] = clazz2.getFields();
+        for (Field fld : fields) {
+            System.out.println("Get public fields in both Parent and Child: " + fld);
+        }
+
+        /**
+         * Static Method 예시
+         */
+
+        Class clazz3 = Class.forName("reflection.StaticExample");
+        Method method = clazz3.getDeclaredMethod("getSquare", int.class);
+        method.invoke(null, 10);
+
+        Field fld = clazz3.getDeclaredField("EXAMPLE");
+        fld.set(null, "Hello, World");
+        System.out.println("StaticExample.EXAMPLE: " + fld.get(null));
+
     }
 }
