@@ -13,6 +13,7 @@ public class 암호문3 {
 
         for (int tc = 1; tc < 11; tc++) {
             password = new LinkedList<>();
+
             br.readLine();
             st = new StringTokenizer(br.readLine(), " ");
             while (st.hasMoreTokens()) {
