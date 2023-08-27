@@ -17,7 +17,6 @@ class UserSolution {
             this.v = v;
             this.nxt = null;
         }
-
         Node(int id, int v, Node nxt) {
             this.id = id;
             this.v = v;
@@ -56,7 +55,6 @@ class UserSolution {
                 t[i].tail[j] = t[i].head[j] = getNewNode(0, null);
             }
         }
-
         for (int i = 0; i <= 100000; i++) {
             version[i] = 0;
             num[i] = 0;
