@@ -1,6 +1,6 @@
 package Programmers;
 
-public class 입국심사 {
+public class Solution31 {
     private boolean isValid(long t, int n, int[] times) {
         long c = 0;
         for (int time : times) {
