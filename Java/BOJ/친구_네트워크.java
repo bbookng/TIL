@@ -39,10 +39,8 @@ public class 친구_네트워크 {
                     parent[idx] = idx;
                     map.put(friend2, idx++);
                 }
-
                 union(map.get(friend1), map.get(friend2));
                 System.out.println(cnt[find(map.get(friend2))]);
-
             }
         }
     }
