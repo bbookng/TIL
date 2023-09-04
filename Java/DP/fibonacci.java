@@ -5,11 +5,18 @@ import java.util.Arrays;
 public class fibonacci {
     private static int calls = 0;
     private static final long[] mem = new long[101];
+
+    private static long test(int n) {
+        System.out.println("test" + n);
+        if (n <= 2) return 1;
+        else return test(n-1) + test(n-2);
+    }
     private static long fibonacci(int n) {
         calls ++;
 
         if (mem[n] != -1) return mem[n];
         if (n == 0 || n == 1) return n;
+
 
         return mem[n] = fibonacci(n - 1) + fibonacci(n - 2);
     }
@@ -28,7 +35,8 @@ public class fibonacci {
 
     public static void main(String[] args) {
         Arrays.fill(mem, -1);
-        System.out.println(fibonacci(10));
+        test(7);
+        System.out.println(fibonacci(7));
         System.out.println("호출 수 : " + calls);
     }
 }
