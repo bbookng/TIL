@@ -13,6 +13,6 @@ public class Solution35 {
     }
 
     public static void main(String[] args) {
-        Solution35.solution("olleh", "hello");
+        System.out.println(Solution35.solution("olleh", "hello"));
     }
 }
