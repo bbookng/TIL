@@ -13,7 +13,6 @@ public class network {
                 dfs(i, computers);
             };
         }
-
         return answer;
     }
 
