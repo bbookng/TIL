@@ -25,7 +25,6 @@ public class N으로표현 {
                 }
             }
             if (numbers.contains(number)) return i;
-
             dp.add(numbers);
         }
         return answer;
