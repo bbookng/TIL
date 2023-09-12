@@ -50,7 +50,6 @@ public class 코딩테스트_공부 {
         return dp[algo][coding];
     }
 
-
     public static void main(String[] args) {
         int[][] problems = {{10,15,2,1,2},{20,20,3,3,4}};
         System.out.println(solution(10, 10, problems));
