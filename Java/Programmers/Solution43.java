@@ -1,10 +1,8 @@
 package Programmers;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
-public class 괄호_회전하기 {
+public class Solution43 {
 
     public static Stack<Character> stack;
 
