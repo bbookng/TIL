@@ -1,14 +1,6 @@
+package Programmers;
+
 import java.util.*;
-
-class Job {
-    int start;
-    int duration;
-
-    public Job(int start, int duration) {
-        this.start = start;
-        this.duration = duration;
-    }
-}
 
 public class Solution51 {
 
