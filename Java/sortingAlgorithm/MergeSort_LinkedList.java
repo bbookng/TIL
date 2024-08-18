@@ -1,7 +1,7 @@
 package sortingAlgorithm;
 
 public class MergeSort_LinkedList {
-    class Node {
+    static class Node {
         int value;
         Node next;
 
@@ -11,7 +11,7 @@ public class MergeSort_LinkedList {
         }
     }
 
-    class MergeSortLinkedList {
+    public static class MergeSortLinkedList {
         Node head;
 
         // 새로운 노드 추가
@@ -86,5 +86,23 @@ public class MergeSort_LinkedList {
             }
             return slow;
         }
+    }
+
+    public static void main(String args[]) {
+        MergeSortLinkedList list = new MergeSortLinkedList();
+        list.add(15);
+        list.add(10);
+        list.add(5);
+        list.add(20);
+        list.add(3);
+        list.add(7);
+
+        System.out.print("Original List: ");
+        list.printList(list.head);
+
+        list.head = list.mergeSort(list.head);
+
+        System.out.print("Sorted List: ");
+        list.printList(list.head);
     }
 }
