@@ -1,6 +1,6 @@
 package sortingAlgorithm;
 
-public class MergeSort {
+public class MergeSort_TopDown {
     static int[] arr = new int[10];
     static int[] sorted;
 
